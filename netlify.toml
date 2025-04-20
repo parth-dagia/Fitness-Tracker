@@ -1,9 +1,11 @@
 [build]
-  command = "NEXT_DISABLE_STATIC_OPTIMIZATION=true npm run build"
+  command = "npm run build"
   publish = "out"
 
 [build.environment]
   NODE_VERSION = "20.10.0"
+  # Ensure no server-side rendering is attempted
+  NEXT_TELEMETRY_DISABLED = "1"
 
 # Remove the NextJS plugin since we're using static export
 # [[plugins]]
@@ -12,4 +14,10 @@
 # Remove functions section since we're using static export
 # [functions]
 #  included_files = [".next/server/**"]
-#  node_bundler = "esbuild" 
+#  node_bundler = "esbuild"
+
+# Add redirects for SPA navigation
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200 
