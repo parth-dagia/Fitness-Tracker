@@ -1,14 +1,15 @@
 [build]
-  command = "npm run build"
-  publish = ".next"
+  command = "NEXT_DISABLE_STATIC_OPTIMIZATION=true npm run build"
+  publish = "out"
 
 [build.environment]
   NODE_VERSION = "20.10.0"
-  NEXT_USE_NETLIFY_EDGE = "true"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+# Remove the NextJS plugin since we're using static export
+# [[plugins]]
+#  package = "@netlify/plugin-nextjs"
 
-[functions]
-  included_files = [".next/server/**"]
-  node_bundler = "esbuild" 
+# Remove functions section since we're using static export
+# [functions]
+#  included_files = [".next/server/**"]
+#  node_bundler = "esbuild" 
