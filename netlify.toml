@@ -6,6 +6,8 @@
   NODE_VERSION = "20.10.0"
   # Ensure no server-side rendering is attempted
   NEXT_TELEMETRY_DISABLED = "1"
+  # Example of where you'd set your API key (don't include actual secrets here)
+  # MY_API_KEY = "your-api-key-would-go-here"
 
 # Remove the NextJS plugin since we're using static export
 # [[plugins]]
@@ -20,4 +22,10 @@
 [[redirects]]
   from = "/*"
   to = "/index.html"
+  status = 200
+
+# Add redirects for API routes to Netlify Functions
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
   status = 200 
